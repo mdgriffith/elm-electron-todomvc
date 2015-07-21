@@ -1,22 +1,21 @@
-# TodoMVC in Elm - [Try It!](http://evancz.github.io/elm-todomvc)
+# TodoMVC in Elm using Electron - 
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+Run Elm in [Electron](http://electron.atom.io/)
 
-## Project Structure
+Specifically this is a fork of [TodoMVC in Elm](https://github.com/evancz/elm-todomvc) that has been modified to run in Electron.
 
-All of the Elm code lives in `Todo.elm` and relies on the [elm-html][] library. 
+First you must have the [elm platform](http://elm-lang.org/install) installed as well as [electron](http://electron.atom.io/).
 
-[elm-html]: http://package.elm-lang.org/packages/evancz/elm-html/latest 
-
-There also is a port handler set up in `index.html` to set the focus on
-particular text fields when necessary.
-
-## Build Instructions
-
-Run the following command from the root of this project:
-
+# Running the thing
+First, you have to compile the elm file into javascript. Change to project root directory and run:
 ```bash
-elm-make Todo.elm
+elm-make src/Todo.elm
 ```
 
-Then open `index.html` in your browser!
+Then run electron.
+```bash
+electron elm-electron-todomvc
+```
+
+
+
