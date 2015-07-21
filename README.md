@@ -14,7 +14,7 @@ elm-make src/Todo.elm
 
 Then run electron.
 ```bash
-electron elm-electron-todomvc
+electron ../elm-electron-todomvc/
 ```
 
 
