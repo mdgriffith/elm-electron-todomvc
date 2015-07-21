@@ -1,0 +1,5 @@
+{
+  "name"    : "elm-electron-todomvc",
+  "version" : "0.1.0",
+  "main"    : "electron-start.js"
+}
