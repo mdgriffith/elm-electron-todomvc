@@ -12,9 +12,9 @@ Compile the elm file into javascript.
 elm-make src/Todo.elm
 ```
 
-Then run electron.
+Then run electron on the current directory.
 ```bash
-electron ../elm-electron-todomvc/
+electron .
 ```
 
 
