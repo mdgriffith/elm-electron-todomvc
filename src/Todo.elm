@@ -9,11 +9,11 @@ This application is broken up into four distinct parts:
   4. Inputs - the signals necessary to manage events
 
 This clean division of concerns is a core part of Elm. You can read more about
-this in the Pong tutorial: http://elm-lang.org/blog/Pong.elm
+this in the Pong tutorial: http://elm-lang.org/blog/making-pong
 
 This program is not particularly large, so definitely see the following
-document for notes on structuring more complex GUIs with Elm:
-http://elm-lang.org/learn/Architecture.elm
+for notes on structuring more complex GUIs with Elm:
+https://github.com/evancz/elm-architecture-tutorial/
 -}
 
 import Html exposing (..)
@@ -66,8 +66,8 @@ emptyModel =
 ---- UPDATE ----
 
 -- A description of the kinds of actions that can be performed on the model of
--- our application. See the following post for more info on this pattern and
--- some alternatives: http://elm-lang.org/learn/Architecture.elm
+-- our application. See the following for more info on this pattern and
+-- some alternatives: https://github.com/evancz/elm-architecture-tutorial/
 type Action
     = NoOp
     | UpdateField String
@@ -89,45 +89,45 @@ update action model =
 
       Add ->
           { model |
-              uid <- model.uid + 1,
-              field <- "",
-              tasks <-
+              uid = model.uid + 1,
+              field = "",
+              tasks =
                   if String.isEmpty model.field
                     then model.tasks
                     else model.tasks ++ [newTask model.field model.uid]
           }
 
       UpdateField str ->
-          { model | field <- str }
+          { model | field = str }
 
       EditingTask id isEditing ->
-          let updateTask t = if t.id == id then { t | editing <- isEditing } else t
+          let updateTask t = if t.id == id then { t | editing = isEditing } else t
           in
-              { model | tasks <- List.map updateTask model.tasks }
+              { model | tasks = List.map updateTask model.tasks }
 
       UpdateTask id task ->
-          let updateTask t = if t.id == id then { t | description <- task } else t
+          let updateTask t = if t.id == id then { t | description = task } else t
           in
-              { model | tasks <- List.map updateTask model.tasks }
+              { model | tasks = List.map updateTask model.tasks }
 
       Delete id ->
-          { model | tasks <- List.filter (\t -> t.id /= id) model.tasks }
+          { model | tasks = List.filter (\t -> t.id /= id) model.tasks }
 
       DeleteComplete ->
-          { model | tasks <- List.filter (not << .completed) model.tasks }
+          { model | tasks = List.filter (not << .completed) model.tasks }
 
       Check id isCompleted ->
-          let updateTask t = if t.id == id then { t | completed <- isCompleted } else t
+          let updateTask t = if t.id == id then { t | completed = isCompleted } else t
           in
-              { model | tasks <- List.map updateTask model.tasks }
+              { model | tasks = List.map updateTask model.tasks }
 
       CheckAll isCompleted ->
-          let updateTask t = { t | completed <- isCompleted }
+          let updateTask t = { t | completed = isCompleted }
           in
-              { model | tasks <- List.map updateTask model.tasks }
+              { model | tasks = List.map updateTask model.tasks }
 
       ChangeVisibility visibility ->
-          { model | visibility <- visibility }
+          { model | visibility = visibility }
 
 
 ---- VIEW ----
@@ -184,7 +184,7 @@ taskList address visibility tasks =
             case visibility of
               "Completed" -> todo.completed
               "Active" -> not todo.completed
-              "All" -> True
+              _ -> True
 
         allCompleted = List.all .completed tasks
 
@@ -333,7 +333,10 @@ port focus =
               EditingTask id bool -> bool
               _ -> False
 
-        toSelector (EditingTask id _) = ("#todo-" ++ toString id)
+        toSelector act =
+            case act of
+              EditingTask id _ -> "#todo-" ++ toString id
+              _ -> ""
     in
         actions.signal
           |> Signal.filter needsFocus (EditingTask 0 True)
