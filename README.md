@@ -9,7 +9,7 @@ You must have the [elm platform](http://elm-lang.org/install) installed as well 
 # Running the thing
 Compile the elm file into javascript. 
 ```bash
-elm-make src/Todo.elm
+elm-make src/Todo.elm --output elm.js
 ```
 
 Then run electron on the current directory.
