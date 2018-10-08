@@ -1,4 +1,4 @@
-# TodoMVC in Elm using Electron (updated for Elm 0.18) -
+# TodoMVC in Elm using Electron (updated for Elm 0.19) -
 
 Run Elm in [Electron](http://electron.atom.io/)!
 
