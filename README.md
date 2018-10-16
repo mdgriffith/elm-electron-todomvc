@@ -1,4 +1,4 @@
-# TodoMVC in Elm using Electron (updated for Elm 0.18) -
+# TodoMVC in Elm using Electron (updated for Elm 0.19) -
 
 Run Elm in [Electron](http://electron.atom.io/)!
 
@@ -9,7 +9,7 @@ You must have the [elm platform](http://elm-lang.org/install) installed as well 
 # Running the thing
 Compile the elm file into javascript.
 ```bash
-elm-make Todo.elm --output elm.js
+elm make Todo.elm --output elm.js
 
 ```
 
